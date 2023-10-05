@@ -8,7 +8,7 @@ export default function MainLayout(){
             <div className='absolute top-0 w-full h-1/4 bg-appbase'>
 
             </div>
-            <div className='relative w-3/4 h-4/5 rounded-lg bg-white shadow-lg shadow-black/50 flex flex-row'>
+            <div className='relative w-3/4 h-4/5 rounded-lg bg-white shadow-lg shadow-black/50 flex flex-row overflow-y-hidden'>
                 <Sidebar></Sidebar>
                 <Outlet />
             </div>

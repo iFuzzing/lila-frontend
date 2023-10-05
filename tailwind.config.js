@@ -10,7 +10,7 @@ export default {
         'appbase': '#EA1F69',
         'appsecondary': '#9357E0',
         'appgraybase': '#747474',
-        'appbasehover': '#DC1960'
+        'appbasehover': '#DC1960',
       },
       fontFamily:{
         'Roboto':['Roboto']

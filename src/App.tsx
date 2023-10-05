@@ -7,6 +7,7 @@ import ChatsPage from './pages/ChatsPage'
 
 import {loader as loaderUnlock} from './pages/UnlockPage'
 import {loader as loaderChats} from './pages/ChatsPage'
+import {loader as loaderIa} from './pages/IaPage'
 
 import './App.css'
 import IaPage from './pages/IaPage'
@@ -15,7 +16,7 @@ const router = createBrowserRouter(createRoutesFromElements(
   <Route path='' element={<MainLayout />}>
     <Route index loader={loaderUnlock} element={<UnlockPage />} ></Route>
     <Route path='chats' loader={loaderChats} element={<ChatsPage />} ></Route>
-    <Route path='/ia' element={<IaPage />} ></Route>
+    <Route path='ia' loader={loaderIa} element={<IaPage />} ></Route>
   </Route>
 ))
 
