@@ -1,11 +1,11 @@
-import { isAuth } from "../Utils/config"
+import { useState } from "react"
 import { redirect } from "react-router-dom"
-
+import { isAuth } from "../Utils/config"
 import IconBox from '../assets/icons/teenyicons_box-outline.svg'
 import IconPath from '../assets/icons/material-symbols_conversion-path.svg'
 import IconFeedback from '../assets/icons/fluent-mdl2_feedback-response-solid.svg'
 import IconIdea from '../assets/icons/carbon_idea.svg'
-import { PencilSimple, Plus, Trash } from "@phosphor-icons/react"
+import { PencilSimple, Plus, Trash, Warning } from "@phosphor-icons/react"
 
 export async function loader(){
 
@@ -17,8 +17,31 @@ export async function loader(){
 }
 
 export default function IaPage(){
+
+    const [showNotification, setShowNotification] = useState(false)
+
+    const notification = (
+        <div className="animate-fadeout-animation fixed z-50 p-4 right-3 bottom-5 w-1/4 h-16 bg-appbase shadow-md shadow-black/40 rounded-md flex items-center justify-between">
+            <Warning className="mx-2 text-white" size={40}></Warning>
+            <span className="text-sm text-white">
+                Essa é apenas uma versão de demonstração do frontend. Backend ainda em desenvolvimento.
+            </span>
+        </div>
+    )
+    
+    async function handleNotification(){
+        if(showNotification)
+            return null
+
+        setShowNotification(true)
+        setTimeout(()=>[
+            setShowNotification(false)
+        ],7000)
+    }
+
     return(
         <>
+                {showNotification?notification:null}
                 <div className="w-full grid grid-cols-2 gap-5 p-8 bg-slate-100 overflow-y-scroll">
                     <div className="relative min-h-[250px] shadow-sm shadow-black/40 border-b-2 border-b-purple-600 rounded-md bg-white">
                         <div className="relative w-full text-center uppercase p-2 bg-purple-600 text-white font-bold">
@@ -35,7 +58,7 @@ export default function IaPage(){
                             </li> 
                         </ul>
                         <input type="text" className="absolute bottom-14 mx-auto left-0 right-0 w-1/2 border-[1px] border-gray-400 outline-appsecondary px-2 rounded-sm" />
-                        <button className="absolute left-0 right-0 max-w-fit bottom-2 flex flex-row mx-auto p-2 bg-purple-600 hover:bg-purple-700 duration-200 ease-in text-white font-medium text-sm rounded-sm"><Plus size={16}></Plus> Adicionar</button>
+                        <button onClick={handleNotification} className="absolute left-0 right-0 max-w-fit bottom-2 flex flex-row mx-auto p-2 bg-purple-600 hover:bg-purple-700 duration-200 ease-in text-white font-medium text-sm rounded-sm"><Plus size={16}></Plus> Adicionar</button>
                     </div>
                     <div className="row-span-2 shadow-sm shadow-black/40 border-b-2 border-b-appbase rounded-md bg-white">
                         <div className="relative w-full text-center p-2 bg-appbase text-white text-sm">
@@ -83,30 +106,9 @@ export default function IaPage(){
                                 <Trash className="cursor-pointer text-appbase" size={22} ></Trash>
                             </div>
                             </li>
-                            <li className="flex flex-row justify-between cursor-pointer ">
-                            <input className="text-appgraybase outline-none cursor-pointer text-lg w-full hover:text-sky-500" readOnly type="text" value={'Formas de pagamento'} />
-                            <div className="flex flex-row gap-3">
-                                <PencilSimple className="cursor-pointer" size={22}></PencilSimple>
-                                <Trash className="cursor-pointer text-appbase" size={22} ></Trash>
-                            </div>
-                            </li> 
-                            <li className="flex flex-row justify-between cursor-pointer ">
-                            <input className="text-appgraybase outline-none cursor-pointer text-lg w-full hover:text-sky-500" readOnly type="text" value={'Formas de pagamento'} />
-                            <div className="flex flex-row gap-3">
-                                <PencilSimple className="cursor-pointer" size={22}></PencilSimple>
-                                <Trash className="cursor-pointer text-appbase" size={22} ></Trash>
-                            </div>
-                            </li> 
-                            <li className="flex flex-row justify-between cursor-pointer ">
-                            <input className="text-appgraybase outline-none cursor-pointer text-lg w-full hover:text-sky-500" readOnly type="text" value={'Formas de pagamento'} />
-                            <div className="flex flex-row gap-3">
-                                <PencilSimple className="cursor-pointer" size={22}></PencilSimple>
-                                <Trash className="cursor-pointer text-appbase" size={22} ></Trash>
-                            </div>
-                            </li> 
                         </ul>
                         <input type="text" className="absolute bottom-14 mx-auto left-0 right-0 w-1/2 border-[1px] border-gray-400 outline-sky-500 px-2 rounded-sm" />
-                        <button className="absolute left-0 right-0 max-w-fit bottom-2 flex flex-row mx-auto p-2 bg-sky-500 hover:bg-sky-600 duration-200 ease-in text-white font-medium text-sm rounded-sm"><Plus size={16}></Plus> Adicionar</button>
+                        <button onClick={handleNotification} className="absolute left-0 right-0 max-w-fit bottom-2 flex flex-row mx-auto p-2 bg-sky-500 hover:bg-sky-600 duration-200 ease-in text-white font-medium text-sm rounded-sm"><Plus size={16}></Plus> Adicionar</button>
                     </div>
                     <div className="relative min-h-[400px] col-span-2 shadow-sm shadow-black/40 border-b-2 border-b-green-600 rounded-md bg-white">
                         <div className="relative w-full text-center uppercase p-2 bg-green-600 text-white font-bold">
@@ -121,45 +123,10 @@ export default function IaPage(){
                                     <Trash className="cursor-pointer text-appbase" size={22} ></Trash>
                                 </div>
                             </li>
-                            <li className="flex flex-row justify-between cursor-pointer ">
-                                <input className="text-appgraybase outline-none cursor-pointer text-lg w-full hover:text-green-600" readOnly type="text" value={'Cartões de crédito e débito, pix e dinheiro'} />
-                                <div className="flex flex-row gap-3">
-                                    <PencilSimple className="cursor-pointer" size={22}></PencilSimple>
-                                    <Trash className="cursor-pointer text-appbase" size={22} ></Trash>
-                                </div>
-                            </li>
-                            <li className="flex flex-row justify-between cursor-pointer ">
-                                <input className="text-appgraybase outline-none cursor-pointer text-lg w-full hover:text-green-600" readOnly type="text" value={'Cartões de crédito e débito, pix e dinheiro'} />
-                                <div className="flex flex-row gap-3">
-                                    <PencilSimple className="cursor-pointer" size={22}></PencilSimple>
-                                    <Trash className="cursor-pointer text-appbase" size={22} ></Trash>
-                                </div>
-                            </li>
-                            <li className="flex flex-row justify-between cursor-pointer ">
-                                <input className="text-appgraybase outline-none cursor-pointer text-lg w-full hover:text-green-600" readOnly type="text" value={'Cartões de crédito e débito, pix e dinheiro'} />
-                                <div className="flex flex-row gap-3">
-                                    <PencilSimple className="cursor-pointer" size={22}></PencilSimple>
-                                    <Trash className="cursor-pointer text-appbase" size={22} ></Trash>
-                                </div>
-                            </li>
-                            <li className="flex flex-row justify-between cursor-pointer ">
-                                <input className="text-appgraybase outline-none cursor-pointer text-lg w-full hover:text-green-600" readOnly type="text" value={'Cartões de crédito e débito, pix e dinheiro'} />
-                                <div className="flex flex-row gap-3">
-                                    <PencilSimple className="cursor-pointer" size={22}></PencilSimple>
-                                    <Trash className="cursor-pointer text-appbase" size={22} ></Trash>
-                                </div>
-                            </li>
-                            <li className="flex flex-row justify-between cursor-pointer ">
-                                <input className="text-appgraybase outline-none cursor-pointer text-lg w-full hover:text-green-600" readOnly type="text" value={'Cartões de crédito e débito, pix e dinheiro'} />
-                                <div className="flex flex-row gap-3">
-                                    <PencilSimple className="cursor-pointer" size={22}></PencilSimple>
-                                    <Trash className="cursor-pointer text-appbase" size={22} ></Trash>
-                                </div>
-                            </li>
                             
                         </ul>
                         <textarea  className="absolute resize-none bottom-14 mx-auto left-0 right-0 w-3/4 border-[1px] min-h-[100px] border-gray-400 outline-green-600 px-2 rounded-sm" />
-                        <button className="absolute left-0 right-0 max-w-fit bottom-2 flex flex-row mx-auto p-2 bg-green-600 hover:bg-green-700 duration-200 ease-in text-white font-medium text-sm rounded-sm"><Plus size={16}></Plus> Adicionar</button>
+                        <button onClick={handleNotification} className="absolute left-0 right-0 max-w-fit bottom-2 flex flex-row mx-auto p-2 bg-green-600 hover:bg-green-700 duration-200 ease-in text-white font-medium text-sm rounded-sm"><Plus size={16}></Plus> Adicionar</button>
                     </div>
                 </div>
         </>

@@ -32,8 +32,8 @@ export default function Sidebar(){
             </nav>
             <div className='absolute bottom-0 flex flex-col w-full'>
                 <div className='flex flex-row justify-center'>
-                    <Link to={''} className='hover:text-appbase duration-200 ease-out' ><GithubLogo size={25} /></Link>
-                    <Link to={''} className='hover:text-appbase duration-200 ease-out'><LinkedinLogo size={25}/></Link>
+                    <Link target='blank' to={'https://github.com/ifuzzing'} className='hover:text-appbase duration-200 ease-out' ><GithubLogo size={25} /></Link>
+                    <Link target='blank' to={'https://www.linkedin.com/in/josivan-sousa-22091a253/'} className='hover:text-appbase duration-200 ease-out'><LinkedinLogo size={25}/></Link>
                 </div>
                 <span className='text-center text-sm font-medium'>iFuzzing</span>
             </div>

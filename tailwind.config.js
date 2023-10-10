@@ -14,6 +14,15 @@ export default {
       },
       fontFamily:{
         'Roboto':['Roboto']
+      },
+      animation:{
+        'fadeout-animation': 'fadeout ease-in-out forwards  7s'
+      },
+      keyframes:{
+        'fadeout': {
+          '0%': {opacity: '100%'},
+          '100%': {opacity: '0%'}
+        }
       }
     },
   },
